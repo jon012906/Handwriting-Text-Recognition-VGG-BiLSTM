@@ -6,14 +6,15 @@ The dataset we used was from [IAM Word Dataset](https://www.kaggle.com/datasets/
 
 ## 1. install requirement
 I trained the model with python 3.9.23 using tensorflow GPU. <br>
-<i>Build environment using conda (optional)<i>
-```python
+<i>Build environment using conda (optional)</i>
+```bash
 conda create -n hwtr python==3.9.23
 ```
 <br>
+
 install the requrements.
-```python
-pip install -r requirement.txt
+```bash
+pip install -r requirement.txt 
 ```
 
 ## 2. move to src folder and run demo
