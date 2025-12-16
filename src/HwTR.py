@@ -1,10 +1,6 @@
 import numpy as np
 import cv2
 import tensorflow as tf
-from tensorflow.keras import layers, Model
-from tensorflow.keras import backend as F
-
-
 class HwTR:
     def __init__(self, img_w, img_h, max_text_length, num_classes, letters, verbose=0):
         self.IMG_W = img_w
@@ -72,16 +68,16 @@ class HwTR:
 
         # CTC
         loss_out = tf.keras.layers.Lambda(
-            lambda args: F.ctc_batch_cost(args[1], args[0], args[2], args[3]),
+            lambda args: tf.keras.backend.ctc_batch_cost(args[1], args[0], args[2], args[3]),
             name="ctc"
         )([y_pred, labels, input_length, label_length])
 
-        training_model = Model(
+        training_model = tf.keras.Model(
             inputs=[input_data, labels, input_length, label_length],
             outputs=loss_out
         )
 
-        inference_model = Model(input_data, y_pred)
+        inference_model = tf.keras.Model(input_data, y_pred)
 
         return training_model, inference_model
 
@@ -131,8 +127,8 @@ class HwTR:
         return img
 
     def decode(self, preds):
-        decoded = F.get_value(
-            F.ctc_decode(
+        decoded = tf.keras.backend.get_value(
+            tf.keras.backend.ctc_decode(
                 preds,
                 input_length=np.ones(preds.shape[0]) * preds.shape[1],
                 greedy=True
@@ -147,9 +143,15 @@ class HwTR:
         return result[0] if len(result) > 0 else ""
 
     def load(self, checkpoint):
-        self.inference_model.load_weights(checkpoint)
-        if self.verbose:
-            print(f"Weights loaded: {checkpoint}")
+        error = 0
+        try:
+            self.inference_model.load_weights(checkpoint)
+            if self.verbose:
+                print(f"Weights loaded: {checkpoint}")
+        except Exception as e:
+            error = 1
+            print(f"Error {e}")
+        return self.inference_model, error
 
     def predict(self, img_tensor):
         preds = self.inference_model.predict(img_tensor)
