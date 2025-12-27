@@ -3,7 +3,8 @@ from HwTR import *
 import numpy as np
 import os
 
-MODEL_PATH = "HwTR_V9.h5"
+# Configure MODEL PATH
+MODEL_PATH = "HwTR_BiLSTM.h5"
 IMG_H = 64
 IMG_W = 128
 LETTERS = (
