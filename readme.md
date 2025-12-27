@@ -24,9 +24,10 @@ python demo.py
 ```
 
 ## TEST OUR APP
-you can try our app with click This link: <br>
+you can try our app with click this link: <br>
 https://handwriting-text-recognition-vgg-bilstm-ctc.streamlit.app/
 <br>
+This is the
 [Alternative](https://handwriting-text-recognition.streamlit.app/)
 
 ## DEMO
