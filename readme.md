@@ -25,7 +25,9 @@ python demo.py
 
 ## TEST OUR APP
 you can try our app with click This link: <br>
-https://handwriting-text-recognition.streamlit.app/
+https://handwriting-text-recognition-vgg-bilstm-ctc.streamlit.app/
+<br>
+[Alternative](https://handwriting-text-recognition.streamlit.app/)
 
 ## DEMO
 ![You will land into this page](demo/demo1.png)
