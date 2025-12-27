@@ -10,6 +10,8 @@ st.set_page_config(page_title="Handwriting Recognition", page_icon="📝")
 IMG_W = 128
 IMG_H = 64
 MAX_TEXT_LENGTH = 16
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "..", "model", "HwTR_BiLSTM.h5")
 
 # Vocabulary
 letters = (
@@ -28,7 +30,7 @@ def get_hwr_model():
     Initializes the HwTR class and loads weights.
     Using cache_resource ensures we don't reload the model on every interaction.
     """
-    model_path = "HwTR_BiLSTM.h5"
+    model_path = MODEL_PATH
     
     if not os.path.exists(model_path):
         return None, f"Model file '{model_path}' not found."
@@ -53,14 +55,14 @@ def get_hwr_model():
 
 # 3. UI
 
-st.title("VGG-BiLSTM-CTC Based Handwritten Text Recognizer📝")
+st.title("VGG-BiLSTM-CTC Based Handwritten Text Recognizer")
 
 # Initialize the HwTR instance
 hwr_instance, error = get_hwr_model()
 
 if error:
     st.error(f"Failed to initialize model: {error}")
-    st.info("Ensure 'HwTR.py' and 'HwTR_V9.h5' are in your GitHub repository.")
+    st.info(f"Ensure {MODEL_PATH} are in your GitHub repository.")
     st.stop()
 
 uploaded_file = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])

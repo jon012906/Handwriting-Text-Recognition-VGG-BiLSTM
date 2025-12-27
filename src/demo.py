@@ -3,8 +3,9 @@ from HwTR import *
 import numpy as np
 import os
 
-# Configure MODEL PATH
-MODEL_PATH = "HwTR_BiLSTM.h5"
+# Configure MODEL PATH\
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "..", "model", "HwTR_BiLSTM.h5")
 IMG_H = 64
 IMG_W = 128
 LETTERS = (
