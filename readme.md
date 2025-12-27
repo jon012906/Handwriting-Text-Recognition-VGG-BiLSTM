@@ -17,8 +17,22 @@ install the requrements.
 pip install -r requirement.txt 
 ```
 
-## 2. move to src folder and run demo
+## 2. Go to src folder and run demo
 ```python
 cd src
 python demo.py
 ```
+
+## TEST OUR APP
+you can try our app with click This link: <br>
+https://handwriting-text-recognition.streamlit.app/
+
+## DEMO
+![You will land into this page](demo/demo1.png)
+
+1. Click browse file or simply drag and drop the image
+![upload images](demo/demo2.png)
+2. After uploaded, click recognize to see the prediction
+   
+3. Then, get the result
+![upload images](demo/demo3.png)
